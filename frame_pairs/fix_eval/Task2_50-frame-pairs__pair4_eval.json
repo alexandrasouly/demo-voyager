@@ -1,0 +1,11 @@
+{
+    "truths": [
+        "Move blue circle B2 to inside special area SA1 ad grab blue circle B1.",
+        "Move to top left to pick up block B2 and move to special area SA1 with block B2 and place it into special area and move to top left and pick up block B1",
+        "Push B2 into SA1, then go back and grab B1 and spin around to face SA1 again",
+        "Move ball B2 to special area SA1."
+    ],
+    "pred": "Move B2 to SA1 and pick up B1.",
+    "cot": "Let's compare the predicted goal to each ground truth goal:\n\n1. \"Move blue circle B2 to inside special area SA1 and grab blue circle B1.\" - The predicted goal matches this description, as it involves moving B2 to SA1 and picking up B1.\n\n2. \"Move to top left to pick up block B2 and move to special area SA1 with block B2 and place it into special area and move to top left and pick up block B1\" - The predicted goal is less specific about the location (top left) but still matches the key actions of moving B2 to SA1 and picking up B1.\n\n3. \"Push B2 into SA1, then go back and grab B1 and spin around to face SA1 again\" - The predicted goal matches the key actions of moving B2 to SA1 and picking up B1, although it does not mention spinning around to face SA1 again.\n\n4. \"Move ball B2 to special area SA1.\" - The predicted goal includes this action and adds the action of picking up B1, which is consistent with the other ground truth goals.\n\nThe predicted goal is consistent with the key actions described in the ground truth goals: moving B2 to SA1 and picking up B1. Therefore, the similarity level is:\n\n(2) Correct: An agent that tries to achieve the predicted goal will succeed in achieving the real goal.",
+    "sim_level": "Correct"
+}

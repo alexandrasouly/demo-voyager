@@ -49,12 +49,8 @@ def encode_image(image_path):
 
 
 def load_cache():
-    try:
-        with open("cache.json", "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print("No cache found")
-        return {}
+    with open("cache.json", "r") as f:
+        return json.load(f)
 
 
 def save_cache(cache):
@@ -216,7 +212,7 @@ def evaluate(final_answers, out_file):
         
         cache = load_cache()
         # check if in cache
-        serialized_args = json.dumps({'truths': truths, 'pred': pred})
+        serialized_args = json.dumps({'truths': truths, 'pred': pred, 'prompt': AUTOEVAL_PROMPT_GOAL})
         if serialized_args in cache:
             print("Using cached result")
             res = cache[serialized_args]
@@ -227,7 +223,7 @@ def evaluate(final_answers, out_file):
             )
             str_ground_truths ="\n".join(ground_truths)
             with system():
-                res = chat_llm + f"""You are a helpful assistant. Your job is to measure the similarity a predicted goal and a set of ground truth observations for a reinforcement learning benchmark environment, where the aim is to manipulate blocks by having a robot push them around in various ways. The set of ground truths are all correct, but were described by different people. You can assume that they all lead to the same outcome, so if the predicted goal describes the same as at least one of them, it's correct. The best predicted goal is one that tells the agent enough information to achieve the true goal, and no more. Note that the shapes, colors, and locations of blocks are significant. e.g. "Move the blue block" is different from "Move the red block". The blocks are labeled starting with B. There are also goal regions with labels containing SA of different colors, and their colors are significant too. Sometimes the goals are formulated in the first person, e.g. "move upwards" or in the third person e.g. "move R upwards". Here R refers to the label of robot you control, therefore these two would be equivalent. It does not matter if the prediction does not mention color or shape as long as the label is correct. Remember, a predicted goal is correct if it would lead to the same outcome as the set of ground truths, even if the wording is different; a goal is different if it would lead to a different outcome, even if the wording is similar. If you cannot determine whether the predicted goal is correct or incorrect without seeing the pictures of the environment, say "unknown".
+                res = chat_llm + AUTOEVAL_PROMPT_GOAL + f"""
 
         The {len(similarity_levels)} possible levels of simlarity are:
 
@@ -261,7 +257,6 @@ def evaluate(final_answers, out_file):
             # save to cache
             cache[serialized_args] = {"cot": res.get("cot"), "sim_level": res.get("sim_level")}
             save_cache(cache)
-
         # save the output
         with open(out_file, "w") as f:
             json.dump({'truths': truths,'pred':predicted_goal,"cot": res.get("cot"), "sim_level": res.get("sim_level")}, f, indent=4)
@@ -410,6 +405,7 @@ We provide you with a list of possible subgoals, and your job is to identify whi
 
 The possible subgoals are:
 """
+AUTOEVAL_PROMPT_GOAL= f"""You are a helpful assistant. Your job is to measure the similarity a predicted goal and a set of ground truth observations for a reinforcement learning benchmark environment, where the aim is to manipulate blocks by having a robot push them around in various ways. The set of ground truths are all correct, but were described by different people. You can assume that they all lead to the same outcome, so if the predicted goal describes the same as at least one of them, it's correct. Note that the shapes, colors, and locations of blocks are significant. e.g. "Move the blue block" is different from "Move the red block". The blocks are labeled starting with B. There are also goal regions with labels containing SA of different colors, and their colors are significant too. Sometimes the goals are formulated in the first person, e.g. "move upwards" or in the third person e.g. "move R upwards". Here R refers to the label of robot you control, therefore these two would be equivalent. It does not matter if the prediction does not mention color or shape as long as the label is correct. In general absolute directions need to be specific: move to the top left and move to the top are not giving the same outcome. Picking up an object and grabbing an object is the same action. In general if an agent is approaching a block, you can assume its intention is to pick up the block. The robot is moving the blocks, so if a goal says move B1 to SA1, and another says move R and B1 to SA1, these result in the same outcome (unless it's specified to do something else with the robot after moving the block). Remember, a predicted goal is correct if it would lead to the same outcome as the set of ground truths, even if the wording is different; a goal is different if it would lead to a different outcome, even if the wording is similar. Go through the the ground truth statements one by one, and check if the prediction matches them one by one. if it matches at least one of them, the prediction is correct. If you cannot determine whether the predicted goal is correct or incorrect without seeing the pictures of the environment, say "unknown". """
 class SummarizeGoalsTemplate(PromptTemplate):
     
     def __init__(self, resolution):
@@ -564,24 +560,24 @@ def main(images_folders, GOAL_FN, GOAL_FN_KWARGS, out_file):
     return evald_answers
 
 if __name__ == "__main__":
-    images_folders = ['/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs',
+    images_folders = ['/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs',
+                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs',
                       ]
     # GOAL_FN = GetGoalFromSinglePrompt()
     # GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/magical/frame_pairs/alex_test','prompt_template': 'two_frame_short_goal_spec_label', 'temperature': 0.5, 'resolution': 'high', 'max_tokens': 1000}
     GOAL_FN = GetGoalPickedFromDiffTemps()
-    GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/magical/frame_pairs/temp_test2','prompt_template': 'two_frame_short_goal_spec_label', 'temperatures': [0,0.2,0.5,0.7], 'resolution': 'high', 'max_tokens': 1000}
-    out_file = '/Users/alexandrasouly/code/chai/magical/frame_pairs/temp_test2/test.json'
+    GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/fix_eval','prompt_template': 'two_frame_short_goal_spec_label', 'temperatures': [0,0.2,0.5,0.7], 'resolution': 'high', 'max_tokens': 1000}
+    out_file = '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/fix_eval/test.json'
     main(images_folders, GOAL_FN, GOAL_FN_KWARGS, out_file)
 
 

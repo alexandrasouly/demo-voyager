@@ -1,0 +1,11 @@
+{
+    "truths": [
+        "Move green circle B1 and B2 inside special area SA1.",
+        "Pick up blocks B1 and B2 and put them into special area SA1",
+        "Push B1 and B2 into SA1, and B3 down to the bottom",
+        "Move balls B1 and B2 to special area SA1."
+    ],
+    "pred": "Move B1 and B2 into SA1.",
+    "cot": "The predicted goal is \"Move B1 and B2 into SA1.\"\n\nLet's compare this with each ground truth goal:\n\n1. \"Move green circle B1 and B2 inside special area SA1.\" - The predicted goal matches this statement, as it specifies moving B1 and B2 into SA1 without mentioning shape or color, which is not necessary since the labels are correct.\n\n2. \"Pick up blocks B1 and B2 and put them into special area SA1\" - The predicted goal matches this statement as well, since \"move\" can be interpreted as picking up and putting the blocks into SA1.\n\n3. \"Push B1 and B2 into SA1, and B3 down to the bottom\" - The predicted goal matches the part about B1 and B2 but does not mention B3. However, since the predicted goal does not contradict the movement of B3, it is still correct regarding B1 and B2.\n\n4. \"Move balls B1 and B2 to special area SA1.\" - The predicted goal matches this statement as it specifies moving B1 and B2 to SA1 without mentioning the shape, which is not necessary as long as the labels are correct.\n\nThe predicted goal matches all the ground truth goals in terms of the outcome for B1 and B2. Therefore, the similarity level is:\n\n(2) Correct: An agent that tries to achieve the predicted goal will succeed in achieving the real goal.",
+    "sim_level": "Correct"
+}

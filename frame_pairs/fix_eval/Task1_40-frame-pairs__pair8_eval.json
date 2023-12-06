@@ -1,0 +1,11 @@
+{
+    "truths": [
+        "Move the yellow triangle block B1 to the top left corner.",
+        "Move to top left with block B1 and place it at top left",
+        "Push B1 to the top left then leave it there and back into the center of the arena",
+        "Place block B1 in the top-left corner of the arena."
+    ],
+    "pred": "Move B1 to the top left of the arena.",
+    "cot": "The ground truth goals all describe the action of moving a specific block, labeled B1, to the top left corner of the arena. The predicted goal also describes moving block B1 to the top left of the arena. Despite slight differences in phrasing, such as \"move to top left with block B1\" or \"push B1 to the top left,\" all descriptions are consistent in the outcome they describe: block B1 should end up in the top left corner of the arena.\n\nTherefore, the predicted goal matches the ground truth goals in terms of the desired outcome. The predicted goal is (2) Correct.",
+    "sim_level": "Correct"
+}

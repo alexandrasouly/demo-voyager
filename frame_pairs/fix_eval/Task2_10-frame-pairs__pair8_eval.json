@@ -1,0 +1,11 @@
+{
+    "truths": [
+        "Move the green square B4 into the special area SA1.",
+        "Move towards special area SA1 with block B4 and place it in the special area",
+        "Push B4 into SA1 (so that it's in the middle left)",
+        "Put block B4 into special area SA1."
+    ],
+    "pred": "None of the above.",
+    "cot": "The predicted goal simply states \"None of the above,\" which does not describe any action or outcome related to the manipulation of blocks or interaction with the special area as described in the ground truth goals. The ground truth goals all involve moving block B4 into special area SA1, albeit with slightly different phrasing. Since the predicted goal does not match any of the ground truth goals in terms of actions or outcomes, it is incorrect. \n\nThe similarity level is (1) Incorrect.",
+    "sim_level": "Incorrect"
+}

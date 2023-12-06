@@ -1,0 +1,11 @@
+{
+    "truths": [
+        "Move the yellow square block B1 to the top left corner.",
+        "Move to bottom and pick up block B1 and move to top left with block B1",
+        "Grab B1 and push it into the top left corner",
+        "Move block B1 to the top-left corner of the arena."
+    ],
+    "pred": "Move B1 to the top of the arena.",
+    "cot": "The ground truth goals all specify moving block B1 to the top left corner of the arena. The predicted goal states to move B1 to the top of the arena, which is not specific enough to ensure that B1 ends up in the top left corner. The predicted goal could result in B1 being placed anywhere along the top edge of the arena, not necessarily the top left corner.\n\nTherefore, the similarity level is:\n\n(1) Incorrect: An agent that tries to achieve the predicted goal will fail in achieving the real goal because there is a meaningful difference between the two goals.",
+    "sim_level": "Incorrect"
+}

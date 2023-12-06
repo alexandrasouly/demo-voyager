@@ -1,0 +1,11 @@
+{
+    "truths": [
+        "Move the yellow square block B1 to the top left corner.",
+        "Move to top left with block B1",
+        "Push B1 straight forward into the top left corner",
+        "Move block B1 to the top-left corner of the arena."
+    ],
+    "pred": "Adjust the position of B1 within the central area of the arena.",
+    "cot": "The ground truth goals all specify moving block B1 to the top left corner of the arena. The predicted goal, however, mentions adjusting the position of B1 within the central area of the arena. These are different locations within the environment, and thus the outcomes of these goals would be different. The predicted goal does not match any of the ground truth goals.\n\nThe similarity level is (1) Incorrect.",
+    "sim_level": "Incorrect"
+}

@@ -1,5 +1,5 @@
 {
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair1": {
         "ground_truths": [
             "Move to green square block B1.",
             "Move to bottom and pick up block B1",
@@ -10,7 +10,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair6": {
         "ground_truths": [
             "Move the blue square block B1 upwards.",
             "Move to middle with block B1",
@@ -21,7 +21,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair8": {
         "ground_truths": [
             "Back away from the yellow triangle block B1.",
             "Move to top left and place block B1",
@@ -32,7 +32,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair9": {
         "ground_truths": [
             "Back away from the green square block B1.",
             "Move to top left and place block B1",
@@ -43,7 +43,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair7": {
         "ground_truths": [
             "Move the pink triangle block B1 to the top left corner.",
             "Move to top left with block B1",
@@ -54,7 +54,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair5": {
         "ground_truths": [
             "Move the yellow square block B1 to the top left corner.",
             "Move to top left with block B1",
@@ -65,7 +65,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair2": {
         "ground_truths": [
             "Move the green triangle block B1 to the top left corner.",
             "Move to top left with block B1",
@@ -76,7 +76,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair3": {
         "ground_truths": [
             "Move the green square block B1 to the top left corner.",
             "Move to top left with block B1",
@@ -87,7 +87,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair4": {
         "ground_truths": [
             "Move the blue square block B1 upwards.",
             "Move to bottom left and pick up block B1",
@@ -98,7 +98,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/10-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs/pair10": {
         "ground_truths": [
             "Grab the blue square block B1.",
             "Move to bottom and pick up block B1",
@@ -109,7 +109,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair1": {
         "ground_truths": [
             "Grab the green square block B1.",
             "Move to bottom and place block B1",
@@ -120,7 +120,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair6": {
         "ground_truths": [
             "Move the blue square block B1 towards the top left corner.",
             "Move toowards the top left with block B1",
@@ -131,7 +131,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair8": {
         "ground_truths": [
             "Back away from the yellow triangle B1 in the top left corner.",
             "Move to top left and place block B1",
@@ -142,7 +142,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair9": {
         "ground_truths": [
             "Release the green square block B1 in the top left corner.",
             "Move to top left with block B1",
@@ -153,7 +153,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair7": {
         "ground_truths": [
             "Release the pink triangle block B1 in the top left corner.",
             "Move to top left and place block B1",
@@ -164,7 +164,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair5": {
         "ground_truths": [
             "Move the yellow square block B1 to the top left corner.",
             "Move to top left with block B1",
@@ -175,7 +175,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair2": {
         "ground_truths": [
             "Move the green triangle block B1 towards the top left corner.",
             "Move to top left with block B1",
@@ -186,7 +186,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair3": {
         "ground_truths": [
             "Move the green square block B1 to the top left corner.",
             "Move to top left with block B1",
@@ -197,7 +197,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair4": {
         "ground_truths": [
             "Move the blue square block B1 towards the top left corner.",
             "Move to top left with block B1",
@@ -208,7 +208,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/20-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs/pair10": {
         "ground_truths": [
             "Grab the blue square block B1.",
             "Move to bottom and pick up block B1",
@@ -219,7 +219,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair1": {
         "ground_truths": [
             "Move the green square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1",
@@ -230,7 +230,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair6": {
         "ground_truths": [
             "Grab the blue square block B1 and move it towards the top left.",
             "Move to bottom and pick up block B1 and move to top left with block B1",
@@ -241,7 +241,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair8": {
         "ground_truths": [
             "Move the yellow triangle block B1 to the top left corner.",
             "Move to top left with block B1 and place it at top left",
@@ -252,7 +252,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair9": {
         "ground_truths": [
             "Move the green square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1",
@@ -263,7 +263,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair7": {
         "ground_truths": [
             "Move the pink triangle block B1 to the top left corner.",
             "Move to top left with block B1 and place it at top left",
@@ -274,7 +274,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair5": {
         "ground_truths": [
             "Move the yellow square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1",
@@ -285,7 +285,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair2": {
         "ground_truths": [
             "Move the green triangle block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1",
@@ -296,7 +296,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair3": {
         "ground_truths": [
             "Move the green square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1",
@@ -307,7 +307,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair4": {
         "ground_truths": [
             "Grab the blue square block B1 and move it towards the bottom.",
             "Move to bottom and pick up block B1",
@@ -318,7 +318,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/40-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs/pair10": {
         "ground_truths": [
             "Move the blue square block B1 to the top left corner.",
             "Move to top left with block B1 and place block B1 at top left",
@@ -329,7 +329,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair1": {
         "ground_truths": [
             "Move the green square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1 and place block B1 on top left ",
@@ -340,7 +340,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair6": {
         "ground_truths": [
             "Move the blue square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1 and place block B1 on top left ",
@@ -351,7 +351,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair8": {
         "ground_truths": [
             "Move the yellow triangle block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1 and place block B1 on top left ",
@@ -362,7 +362,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair9": {
         "ground_truths": [
             "Move the green square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1",
@@ -373,7 +373,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair7": {
         "ground_truths": [
             "Move the pink triangle block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1 and place block B1 on top left ",
@@ -384,7 +384,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair5": {
         "ground_truths": [
             "Move the yellow square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1",
@@ -395,7 +395,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair2": {
         "ground_truths": [
             "Move the green triangle block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1 and place block B1 on top left ",
@@ -406,7 +406,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair3": {
         "ground_truths": [
             "Move the green square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1 and place block B1 on top left ",
@@ -417,7 +417,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair4": {
         "ground_truths": [
             "Move the blue square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1 and place block B1 on top left ",
@@ -428,7 +428,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task1/80-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs/pair10": {
         "ground_truths": [
             "Move the blue square block B1 to the top left corner.",
             "Move to bottom and pick up block B1 and move to top left with block B1 and place block B1 on top left ",
@@ -439,7 +439,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair1": {
         "ground_truths": [
             "Move the robot towards the green circle block B4.",
             "Move towards block B4 and pick up block B4",
@@ -450,7 +450,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair6": {
         "ground_truths": [
             "Move the pink square B3 into the special area SA1.",
             "Move towards special area SA1 with block B3",
@@ -461,7 +461,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair8": {
         "ground_truths": [
             "Move the green square B4 into the special area SA1.",
             "Move towards special area SA1 with block B4 and place it in the special area",
@@ -472,7 +472,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair9": {
         "ground_truths": [
             "Move the green circle B4 into the special area SA1.",
             "Move towards special area SA1 with block B4",
@@ -483,7 +483,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair7": {
         "ground_truths": [
             "Back away from the block B1 in the special area SA1.",
             "Move towards special area SA1 with block B1 and place it in the special area",
@@ -494,7 +494,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair5": {
         "ground_truths": [
             "Move the blue circle B1 into the special area fully.",
             "Move towards special area SA1 and place block B1 in SA1",
@@ -505,7 +505,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair2": {
         "ground_truths": [
             "Grab the green circle block B1.",
             "Move towards block B1 and pick up block B1",
@@ -516,7 +516,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair3": {
         "ground_truths": [
             "Move the green square block B3 to the special area SA1",
             "Move towards special area SA1 with block B3",
@@ -527,7 +527,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair4": {
         "ground_truths": [
             "Move the blue circle block B2 into the special area SA2",
             "Move towards special area SA1 with block B2 and place it in SA1",
@@ -538,7 +538,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/10-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs/pair10": {
         "ground_truths": [
             "Move the green sqaure B5 towards the special area SA1.",
             "Move towards special area SA1 with block B5",
@@ -549,7 +549,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair1": {
         "ground_truths": [
             "Move green circle B4 to green special area SA1",
             "Move towards special area SA1 with block B4 and place it in the special area",
@@ -560,7 +560,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair6": {
         "ground_truths": [
             "Move pink square B3 to pink special area SA1",
             "Move to special area SA1 with block B3 and place it into special area",
@@ -571,7 +571,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair8": {
         "ground_truths": [
             "Move green square B4 to green special area SA1",
             "Move to special area SA1 with block B3 and place it into special area",
@@ -582,7 +582,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair9": {
         "ground_truths": [
             "Move green circle B4 to green special area SA1",
             "Move to special area SA1 with block B4 and place it into special area",
@@ -593,7 +593,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair7": {
         "ground_truths": [
             "Release pink square B1 inside the pink special area SA1 and back away",
             "Move to special area SA1 with block B1 and place it into special area and move to bottom right",
@@ -604,7 +604,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair5": {
         "ground_truths": [
             "Move blue circle B1 to blue special area SA1",
             "Move to top left and pick up block B1 and place it in the special area",
@@ -615,7 +615,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair2": {
         "ground_truths": [
             "Move green circle B1 to green special area SA1",
             "Move left and pick up block B1 and move to special area SA1 with block B1 and place it in the special area",
@@ -626,7 +626,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair3": {
         "ground_truths": [
             "Move green square B3 to green special area SA1",
             "Move to special area SA1 with block B3 and place it in the special area",
@@ -637,7 +637,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair4": {
         "ground_truths": [
             "Move blue circle B2 to blue special area SA1",
             "Move to special area SA1 with block B2 and place it in the special area SA1",
@@ -648,7 +648,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/20-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs/pair10": {
         "ground_truths": [
             "Move green square B5 to green special area SA1",
             "Move to special area SA1 with block B5 and place it into special area",
@@ -659,7 +659,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair1": {
         "ground_truths": [
             "Move green circle B3 to inside special area SA1.",
             "Move to left to pick up block B3 and move to special area SA1 with block B3 and place it into special area",
@@ -670,7 +670,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair6": {
         "ground_truths": [
             "Move pink square B3 inside special ara SA1.",
             "Move to special area SA1 with block B3 and place it into special area",
@@ -681,7 +681,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair8": {
         "ground_truths": [
             "Move green square B4 inside special area SA1.",
             "Move to bottom right to pick up block B4 and move to special area SA1",
@@ -692,7 +692,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair9": {
         "ground_truths": [
             "Move green circle B4 inside special area SA1.",
             "Move to right to pick up block B4 and move to special area SA1 with block B4 and place it into special area",
@@ -703,7 +703,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair7": {
         "ground_truths": [
             "Move pink square B1 and pink sqaure B4 inside special area SA1.",
             "Place blocvk B1 into the special aprea and move to bottom left and pick up block B4 and place it into the special area",
@@ -714,7 +714,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair5": {
         "ground_truths": [
             "Move blue circle B1 fully inside special area SA1.",
             "Move to top left to pick up block B1 and move to special area SA1 with block B1 and place it into special area",
@@ -725,7 +725,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair2": {
         "ground_truths": [
             "Move green circle B2 to inside special area SA1 and move blue circle B3 downwards.",
             "Move to bottom left to pick up block B2 and move to special area SA1 with block B2 and place it into special area",
@@ -736,7 +736,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair3": {
         "ground_truths": [
             "Move green square B3 to inside special area SA1.",
             "Move to top left to pick up block B3 and move to special area SA1 with block B3 and place it into special area",
@@ -747,7 +747,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair4": {
         "ground_truths": [
             "Move blue circle B2 to inside special area SA1 ad grab blue circle B1.",
             "Move to top left to pick up block B2 and move to special area SA1 with block B2 and place it into special area and move to top left and pick up block B1",
@@ -758,7 +758,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/50-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs/pair10": {
         "ground_truths": [
             "Move green square B5 inside special area SA1.",
             "Move to special area SA1 with block B5 and place it into special area and move to top left to pick up block B4",
@@ -769,7 +769,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair1": {
         "ground_truths": [
             "Move green circles B3 and B4 inside special area SA1.",
             "Pick up blocks B3 and B4 and put them into special area SA1",
@@ -780,7 +780,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair6": {
         "ground_truths": [
             "Move pink square block B3 inside special area SA1.",
             "Pick up block B3 and put it into special area SA1",
@@ -791,7 +791,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair8": {
         "ground_truths": [
             "Move green sqaure block B4 inside special area SA1.",
             "Pick up block B4 and put it into special area SA1",
@@ -802,7 +802,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair9": {
         "ground_truths": [
             "Move green circle block B4 inside special area SA1.",
             "Pick up block B4 and put it into special area SA1",
@@ -813,7 +813,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair7": {
         "ground_truths": [
             "Move pink square block B1 and pink square block B4 inside special area SA1.",
             "Pick up blocks B1,and B4 and put them into special area SA1",
@@ -824,7 +824,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair5": {
         "ground_truths": [
             "Fully move blue circle B1 inside special area.",
             "Pick up block B1 and put it into special area SA1",
@@ -835,7 +835,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair2": {
         "ground_truths": [
             "Move green circle B1 and B2 inside special area SA1.",
             "Pick up blocks B1 and B2 and put them into special area SA1",
@@ -846,7 +846,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair3": {
         "ground_truths": [
             "Move green square B3 inside special area SA1.",
             "Pick up block B3 and put it into special area SA1",
@@ -857,7 +857,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair4": {
         "ground_truths": [
             "Move blue circle B1 and B2 inside special area SA1 and grab blue circle B4.",
             "Pick up blocks B1 and B2, and put them into special area SA1",
@@ -868,7 +868,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task2/100-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs/pair10": {
         "ground_truths": [
             "Move green square block B5 inside special area SA1.",
             "Pick up block B5 and put it into special area SA1",
@@ -879,7 +879,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair1": {
         "ground_truths": [
             "Move the blue triangle B2 towards the right.",
             "Pick up block B2 and push block B1 into the special area SA3",
@@ -890,7 +890,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair6": {
         "ground_truths": [
             "Grab the pink triangle block B1 with the robot.",
             "Move to left and pick up block B1",
@@ -901,7 +901,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair8": {
         "ground_truths": [
             "Move blue circle B2 towards SA1.",
             "Move to special area SA1 with block B2",
@@ -912,7 +912,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair9": {
         "ground_truths": [
             "Move green square B3 inside SA1 from SA3",
             "Move to special area SA1 with block B3",
@@ -923,7 +923,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair7": {
         "ground_truths": [
             "Push the blocks B1, B2 and B5 closer to SA2.",
             "Move to special area SA2",
@@ -934,7 +934,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair5": {
         "ground_truths": [
             "Move the green triangle B1 to the pink special area SA3.",
             "Move to special area SA3 with block B1",
@@ -945,7 +945,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair2": {
         "ground_truths": [
             "Move the green traingle B2 upwards.",
             "Pick up block B2 and turn toward bottom right",
@@ -956,7 +956,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair3": {
         "ground_truths": [
             "Release the pink triangle block B1 and move the robot upwards.",
             "Move to special area SA1 with block B1 and push block B2 into the special area SA1 and place block B1 into the special area SA1",
@@ -967,7 +967,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair4": {
         "ground_truths": [
             "Approach the pink square block B1 with the robot.",
             "Move to bottom and pick up block B1",
@@ -978,7 +978,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/10-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs/pair10": {
         "ground_truths": [
             "Turn the robot a bit towards blue circle B1.",
             "Move to bottom and turn toward the block B1",
@@ -989,7 +989,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair1": {
         "ground_truths": [
             "Move blue triangle B2 and pink circle B1 into SA3.",
             "Move to special area SA3 with block B2 and push the block B1 and block B2 into special area SA3",
@@ -1000,7 +1000,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair6": {
         "ground_truths": [
             "Grab pink triangle B1 with the robot.",
             "Move to right and pick up the block B1",
@@ -1011,7 +1011,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair8": {
         "ground_truths": [
             "Move blue circle block B2 into SA1.",
             "Move to special area SA1 with block B2 and place it into special area SA1",
@@ -1022,7 +1022,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair9": {
         "ground_truths": [
             "Move green square block B3 into SA1.",
             "Move to special area SA1 with block B3 and place it into special area SA1",
@@ -1033,7 +1033,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair7": {
         "ground_truths": [
             "Push the blocks B1, B2 and B5 closer to SA2.",
             "Push the blocks B1, B2, B5 to special area SA2",
@@ -1044,7 +1044,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair5": {
         "ground_truths": [
             "Move green triangle B1 into SA3",
             "Move to special area SA3 with block B1 and place it into special area SA3",
@@ -1055,7 +1055,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair2": {
         "ground_truths": [
             "Move green triangle B2 inside special area SA3.",
             "Move to special area SA3 with block B2",
@@ -1066,7 +1066,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair3": {
         "ground_truths": [
             "Grab pink square B5 with the robot.",
             "Place blocks B1 and B2 in special area SA1 and pick up the block B5",
@@ -1077,7 +1077,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair4": {
         "ground_truths": [
             "Move pink square B1 into SA2.",
             "Move to bottom and pick up the block B1 and place it into special area SA2",
@@ -1088,7 +1088,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/20-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs/pair10": {
         "ground_truths": [
             "Turn the robot towards blue circle block B1",
             "Move to bottom toward the block B1",
@@ -1099,7 +1099,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair1": {
         "ground_truths": [
             "Move blocks B1, B2 and B4 inside SA3.",
             "Push the blocks B2, B1, and B4 into the special area SA3",
@@ -1110,7 +1110,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair6": {
         "ground_truths": [
             "Move blue triangle B2 and pink triangle B1 inside pink special area SA3.",
             "Place the blocks B2 and B1 into special area SA3",
@@ -1121,7 +1121,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair8": {
         "ground_truths": [
             "Move blue circle block B2 inside SA1.",
             "Place the block B2 to special area SA1",
@@ -1132,7 +1132,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair9": {
         "ground_truths": [
             "Move green circle block B1 and green square block B3 inside SA1.",
             "Place the blocks B3 and B1 into special area SA1",
@@ -1143,7 +1143,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair7": {
         "ground_truths": [
             "Move B1, B2 and B5 blocks inside SA2 so that all the blocks are inside SA2.",
             "Place the blocks B5, B2 and B1 into special area SA2",
@@ -1154,7 +1154,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair5": {
         "ground_truths": [
             "Move green triangle B1 inside special area SA3.",
             "Move to the bottom and pick up B1 and place it into special area SA3",
@@ -1165,7 +1165,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair2": {
         "ground_truths": [
             "Move green circle block B1 inside SA3.",
             "Move to the bottom left and pick up B1 and place it into special area SA3",
@@ -1176,7 +1176,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair3": {
         "ground_truths": [
             "Move green triangle block B4 inside pink special area SA1.",
             "Move to the top left and pick up B4 and place it into special area SA1",
@@ -1187,7 +1187,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair4": {
         "ground_truths": [
             "Move green circle block B2 inside pink special area SA2.",
             "Move to the top and pick up B2 and place it into special area SA2",
@@ -1198,7 +1198,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/60-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs/pair10": {
         "ground_truths": [
             "Move blue circle B2 inside SA2.",
             "Place the block B2 into special area SA2",
@@ -1209,7 +1209,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair1": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair1": {
         "ground_truths": [
             "Push block B1, B2, B3, B4 and B5 into pink special area SA3 so that all blocks are in SA3.",
             "Place the blocks B1, B2, B3, B4, and B5 into special area SA3",
@@ -1220,7 +1220,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair6": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair6": {
         "ground_truths": [
             "Move blocks B1 and B2 into SA3.",
             "Place the blocks B1, B2, B3, B4, and B5 into special area SA2",
@@ -1231,7 +1231,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair8": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair8": {
         "ground_truths": [
             "Move blocks B1 and B2 into SA1.",
             "Place the blocks B1, and B2 into special area SA1",
@@ -1242,7 +1242,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair9": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair9": {
         "ground_truths": [
             "Move blocks B1, B2 and B3 into SA1.",
             "Place the blocks B1, B2, and B3 into special area SA1",
@@ -1253,7 +1253,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair7": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair7": {
         "ground_truths": [
             "Push block B1, B2, B3, B4 and B5 into pink special area SA2 so that all blocks are in SA2",
             "Place the blocks B1, and B2 into special area SA2",
@@ -1264,7 +1264,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair5": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair5": {
         "ground_truths": [
             "Move blocks B1 and B2 into SA3.",
             "Place the blocks B1, and B2 into special area SA3",
@@ -1275,7 +1275,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair2": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair2": {
         "ground_truths": [
             "Move blocks B1 and B2 into SA3.",
             "Place the blocks B1, and B2 into special area SA3",
@@ -1286,7 +1286,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair3": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair3": {
         "ground_truths": [
             "Push block B1, B2, B3, B4 and B5 into pink special area SA1 so that all blocks are in SA1.",
             "Place the blocks B1, B2, B3, B4, and B5 into special area SA1",
@@ -1297,7 +1297,7 @@
         "similarity": "Incorrect",
         "human_eval_similarity": "Incorrect"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair4": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair4": {
         "ground_truths": [
             "Move blocks B1 and B2 into SA2.",
             "Place the blocks B1, and B2 into special area SA2",
@@ -1308,7 +1308,7 @@
         "similarity": "Correct",
         "human_eval_similarity": "Correct"
     },
-    "/Users/alexandrasouly/code/chai/magical/frame_pairs/Task3/180-frame-pairs/pair10": {
+    "/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs/pair10": {
         "ground_truths": [
             "Move blocks B1 and B2 into SA2.",
             "Place the blocks B1, and B2 into special area SA2",
