@@ -12,6 +12,8 @@ from tenacity import retry, retry_if_exception_type, stop_after_attempt
 import glob
 from guidance import models, gen, select, system, user, assistant
 import matplotlib.pyplot as plt
+import numpy as np
+import cv2
 
 
 
@@ -505,11 +507,84 @@ class EvalGoalsTemplate(PromptTemplate):
                 goal = k
                 return {'eval': goal}
         return {'eval': 'Failed'}
-            
+
+
+# this is for determining the subgoal from two frames
+TWO_FRAME_SHORT_GOAL_SPEC_LABEL_PROMPT_DIFFERENCES = """
+The following pictures are from an RL environment. It's a multitask benchmark where a robot must move blocks of different colours and shapes in a 2D square to achieve different goals. The goals are to be inferred from demonstrations, and are easy to grasp for humans. You are given two frames from a part of the trajectory of the agent in the process of completing the goal. You are then given a third frame that highlights the changes beteen the two frames in red. Note that any pixels that are different between the two images will be highlighted in red, so if an object moves from one position to another, then both its old position and its new position will be highlighted in red; if there is no red at all, then nothing changed. There are three possible kind of objects in this environment. The grey circular object labelled R is a robot with two arms that can move around and move blocks (if there are any) to achieve the objective. The robot is always present. There can be movable blocks, which have different shapes and colours, they all have a solid outline. The possible shapes are circle, triangle and square, no other shapes exist. The possible colours are blue, pink, and green. Blocks do not disappear. Each block is labeled by a number starting from B1, to B2, to B3, etc. to help you keep track of them. There can also be special areas in the environment, these are light coloured with dashed outlines. Special areas can only be rectangular. They are labelled SA1, SA2, etc. to help you distinguish them from movable blocks. The robot can move inside the special areas and place blocks (if there are any) inside them. There may or may not be any special areas. There is a 3x3 grid with rows A,B,C and columns 1,2,3 to help you refer to the position of the objects. Column A is the left of the arena, and column C is the right of the arena. Row 1 is the top of the arena, Row 3 is the bottom of the arena. The grid is only a visual help for you, the objective does not include any reference to the grid. Your job is to be an expert on this environment and by looking at the given two trajectory frames, identify what subgoal the agent was following between the two frames, using the third difference summary frame (in red) to identify what has changed. Think out loud step-by-step by
+1, identify the robot on the first picture. It is always present, has a number and is grey circular with two arms. It is labeled R.
+2, identify the special areas on the first picture if there are any. These are rectangles and have labels with SA and a number starting from 1. Name their colour too.
+3, identify the movable blocks if there are any. These are the numbered shapes labeled B with a number starting from 1. Name their shape and colour.
+5, describing the position of the objects in the first picture by referring to the grid. For movable blocks, state explicitly whether they are in a special area or not. For special areas, state whether they contain blocks or not.
+6, naming the objects in the second picture. These should be the same as in the first picture with the same numeric labels, objects do not disappear and new ones do not appear. Do not refer back to the first picture when doing this.
+7, describing their position in the second picture. Do not refer back to the first picture when doing this. Don't compare and say what changed from the first picture, just describe the position of the objects. Don’t use words like “changed”, “remains”, “still” or any words that would refer back to the first picture.
+8. Describe the changes between the first and second picture by referring to red regions of the third picture. If there are no red regions, then there were no changes.
+9. Compare the image descriptions with reference to the changes identified in step 8. Do not compare the images directly.
+Output the agent's subgoal as a short, descriptive sentence on a new line after the words "SUBGOAL:" based on the changes between the frames. Do not mention the 3x3 grid in your final answer, for example instead of "move to C3" describe parts of the area as "move to bottom right", "move to top left", "move to block B3" etc.  Don't be vague, for example instead of  "move to a new location", be specific and say "move to the bottom of the arena" if that's the case. If you refer to blocks or special areas in your subgoal, refer to them by label only, for example "move B3 to SA2" instead of "move the blue square block to the special area". If the robot is carrying a block between two frames, don't forget to mention the block moving too, not just the robot.
+"""
+class TwoFrameAndDiffShortGoalSpecLabelTemplate(PromptTemplate):
+    
+    def __init__(self, resolution):
+        super().__init__(resolution)
+        self.prompt = TWO_FRAME_SHORT_GOAL_SPEC_LABEL_PROMPT_DIFFERENCES
+        
+    
+    def __call__(self,imgs):
+        assert len(imgs) == 2, "Must provide two images"
+        before_img, after_img = imgs
+        diff_img = visualize_difference_png(before_img, after_img)
+        return [
+            {
+                "type": "text",
+                "text": self.prompt,
+            },
+            {
+                "type": "text",
+                "text": f"Frame 1:",
+            },
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:image/jpeg;base64,{before_img}",
+                    "detail": self.resolution,
+                },
+            },
+            {
+                "type": "text",
+                "text": f"Frame 2:",
+            },
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:image/jpeg;base64,{after_img}",
+                    "detail": self.resolution,
+                },
+            },
+            {
+                "type": "text",
+                "text": f"Difference frame (differences highlighted in red):",
+            },
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:image/jpeg;base64,{diff_img}",
+                    "detail": self.resolution,
+                },
+            },
+        ]
+
+    def parse_output(self, text):
+        # Find any lines that start with "GOAL:"
+        goal_lines = [line for line in text.split("\n") if line.startswith("SUBGOAL:")]
+        # Remove the "GOAL:" prefix
+        goals = [line.replace("SUBGOAL:", "") for line in goal_lines]
+        return {'subgoals': goals}
+
         
 # add new ones here 
 PROMPT_TEMPLATES = {
     "two_frame_short_goal_spec_label": TwoFrameShortGoalSpecLabelTemplate,    
+    "two_frame_and_diff_short_goal_spec_label": TwoFrameAndDiffShortGoalSpecLabelTemplate,    
     "summarize_goals": SummarizeGoalsTemplate,
     "pick_majority": PickMajorityTemplate,
     "eval_goals": EvalGoalsTemplate,
@@ -625,6 +700,57 @@ class GetGoalPickedFromDiffTemps(GetGoal):
         return final  
 
 
+def visualize_difference_png(base64_image1, base64_image2):
+    """Highlight differences between the two images in red.
+    
+    Ingests and returns base64-encoded PNG images."""
+    # Decode the base64 strings to bytes
+    image1_bytes = base64.b64decode(base64_image1)
+    image2_bytes = base64.b64decode(base64_image2)
+    
+    # Convert the bytes data to numpy arrays
+    image1_array = np.frombuffer(image1_bytes, dtype=np.uint8)
+    image2_array = np.frombuffer(image2_bytes, dtype=np.uint8)
+    
+    # Decode the numpy arrays to images
+    image1 = cv2.imdecode(image1_array, cv2.IMREAD_COLOR)
+    image2 = cv2.imdecode(image2_array, cv2.IMREAD_COLOR)
+    
+    # Ensure the images are in RGB format for matplotlib
+    image1 = cv2.cvtColor(image1, cv2.COLOR_BGR2RGB)
+    image2 = cv2.cvtColor(image2, cv2.COLOR_BGR2RGB)
+    
+    # Apply a Gaussian blur to both images to reduce noise
+    image1_blur = cv2.GaussianBlur(image1, (5, 5), 0)
+    image2_blur = cv2.GaussianBlur(image2, (5, 5), 0)
+    
+    # Compute the absolute difference between the blurred images
+    difference = cv2.absdiff(image1_blur, image2_blur)
+    
+    # Create a mask where the differences are
+    mask = cv2.cvtColor(difference, cv2.COLOR_RGB2GRAY) > 15  # Adjusted threshold to reduce sensitivity
+    
+    # Create a red highlight image
+    red_highlight = np.zeros_like(image1)
+    red_highlight[:] = [255, 0, 0]  # RGB format for red
+    
+    # Overlay the red highlights onto the second image
+    visualization_new = image2.copy()
+    visualization_new[mask] = cv2.addWeighted(image2, 0.5, red_highlight, 0.5, 0)[mask]
+    
+    # Convert the visualization image to bytes
+    visualization_image = cv2.cvtColor(visualization_new, cv2.COLOR_RGB2BGR)
+    success, buffer_array = cv2.imencode('.png', visualization_image)
+    if not success:
+        raise ValueError('Could not encode image to PNG')
+    
+    # Convert bytes to base64 string
+    base64_visualization = base64.b64encode(buffer_array).decode('utf-8')
+    
+    return base64_visualization
+
+
+
 
 def main(images_folders, GOAL_FN, GOAL_FN_KWARGS, out_folder):
     ground_truths = get_ground_truths(images_folders)
@@ -637,24 +763,33 @@ def main(images_folders, GOAL_FN, GOAL_FN_KWARGS, out_folder):
     return evald_answers
 
 if __name__ == "__main__":
-    images_folders = ['/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/10-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/20-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/40-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task1/80-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/10-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/20-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/50-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task2/100-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/10-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/20-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs',
-                      '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs',
+    this_dir = os.path.dirname(os.path.abspath(__file__))
+    images_folders = [f'{this_dir}/Task1/10-frame-pairs',
+                      # f'{this_dir}/Task1/20-frame-pairs',
+                      # f'{this_dir}/Task1/40-frame-pairs',
+                      # f'{this_dir}/Task1/80-frame-pairs',
+                      # f'{this_dir}/Task2/10-frame-pairs',
+                      # f'{this_dir}/Task2/20-frame-pairs',
+                      # f'{this_dir}/Task2/50-frame-pairs',
+                      # f'{this_dir}/Task2/100-frame-pairs',
+                      # f'{this_dir}/Task3/10-frame-pairs',
+                      # f'{this_dir}/Task3/20-frame-pairs',
+                      # f'{this_dir}/Task3/60-frame-pairs',
+                      # f'{this_dir}/Task3/180-frame-pairs',
                       ]
-    output_folder = '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/pick_majority'
+    output_folder = f'{this_dir}/quick_eval'
     # GOAL_FN = GetGoalFromSinglePrompt()
-    # GOAL_FN_KWARGS = {'output_folder': output_folder,'prompt_template': 'two_frame_short_goal_spec_label', 'temperature': 0.7, 'resolution': 'high', 'max_tokens': 1000}
-    GOAL_FN = GetGoalPickedFromDiffTemps()
-    GOAL_FN_KWARGS = {'output_folder': output_folder,'prompt_template': 'two_frame_short_goal_spec_label', 'temperatures': [0,0.2,0.5,0.7], 'resolution': 'high', 'max_tokens': 1000}
+    # GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/magical/frame_pairs/alex_test','prompt_template': 'two_frame_short_goal_spec_label', 'temperature': 0, 'resolution': 'high', 'max_tokens': 1000}
+    # GOAL_FN = GetGoalPickedFromDiffTemps()
+    # GOAL_FN_KWARGS = {'output_folder': output_folder,'prompt_template': 'two_frame_short_goal_spec_label', 'temperatures': [0,0.2,0.5,0.7], 'resolution': 'high', 'max_tokens': 1000}
+    GOAL_FN = GetGoalFromSinglePrompt()
+    GOAL_FN_KWARGS = {
+        'output_folder': output_folder,
+        'prompt_template': 'two_frame_and_diff_short_goal_spec_label',
+        'temperature': 0,
+        'resolution': 'high',
+        'max_tokens': 1000,
+    }
     main(images_folders, GOAL_FN, GOAL_FN_KWARGS, output_folder)
 
 
