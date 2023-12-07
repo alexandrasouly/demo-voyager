@@ -329,6 +329,15 @@ We provide you with a list of possible subgoals, and your job is to identify whi
 
 The possible subgoals are:
 """
+PICK_MAJORiTY_PROMPT = """
+The following pictures are from an RL environment. It's a multitask benchmark where a robot must move blocks of different colours and shapes in a 2D square to achieve different goals. The goals are to be inferred from demonstrations, and are easy to grasp for humans. You are given two frames from a part of the trajectory of the agent in the process of completing the goal. There are three possible kind of objects in this environment. The grey circular object labelled R is a robot with two arms that can move around and move blocks (if there are any) to achieve the objective. The robot is always present. There can be movable blocks, which have different shapes and colours, they all have a solid outline. The possible shapes are circle, triangle and square, no other shapes exist. The possible colours are blue, pink, and green. Blocks do not disappear. Each block is labeled by a number starting from B1, to B2, to B3, etc. to help you keep track of them. There can also be special areas in the environment, these are light coloured with dashed outlines. Special areas can only be rectangular. They are labelled SA1, SA2, etc. to help you distinguish them from movable blocks. The robot can move inside the special areas and place blocks (if there are any) inside them. There may or may not be any special areas. There is a 3x3 grid with rows A,B,C and columns 1,2,3 to help you refer to the position of the objects. Column A is the left of the arena, and column C is the right of the arena. Row 1 is the top of the arena, Row 3 is the bottom of the arena. The grid is only a visual help for you, the objective does not include any reference to the grid. Your job is to be an expert on this environment and by looking at the given two trajectory frames, identify what subgoal the agent was following between the two frames. The subgoals were produced by labelers using the following prompt:
+'Output the agent's subgoal as a short, descriptive sentence on a new line after the words "SUBGOAL:" based on the changes between the frames. Do not mention the 3x3 grid in your final answer, for example instead of "move to C3" describe parts of the area as "move to bottom right", "move to top left", "move to block B3" etc.  Don't be vague, for example instead of  "move to a new location", be specific and say "move to the bottom of the arena" if that's the case. If you refer to blocks or special areas in your subgoal, refer to them by label only, for example "move B3 to SA2" instead of "move the blue square block to the special area". If the robot is carrying a block between two frames, don't forget to mention the block moving too, not just the robot.'
+
+We provide you with a list of possible subgoals, and your job is to identify which subgoal the agent was following by the following method:
+If at least two subgoals in the list mean the same thing, pick that one as a final subgoal (multiple labelers agreed, therefore it's likely to be correct). If all of the subgoals are different, use your best judgment based on the images. Remember, you must pick one of the 4. If you think none of them are correct, pick the most likely one. Think out loud step-by-step and write your final answer on a new line after the words "FINAL:"
+
+The possible subgoals are:
+"""
 EVAL_GOALS_PROMPT= f"""You are a helpful assistant. Your job is to measure the similarity a predicted goal and a set of ground truth observations for a reinforcement learning benchmark environment, where the aim is to manipulate blocks by having a robot push them around in various ways. The set of ground truths are all correct, but were described by different people. You can assume that they all lead to the same outcome, so if the predicted goal describes the same as at least one of them, it's correct. Note that the shapes, colors, and locations of blocks are significant. e.g. "Move the blue block" is different from "Move the red block". The blocks are labeled starting with B. There are also goal regions with labels containing SA of different colors, and their colors are significant too. Sometimes the goals are formulated in the first person, e.g. "move upwards" or in the third person e.g. "move R upwards". Here R refers to the label of robot you control, therefore these two would be equivalent. It does not matter if the prediction does not mention color or shape as long as the label is correct. In general absolute directions need to be specific: move to the top left and move to the top are not giving the same outcome. Picking up an object and grabbing an object is the same action. In general if an agent is approaching a block, you can assume its intention is to pick up the block. The robot is moving the blocks, so if a goal says move B1 to SA1, and another says move R and B1 to SA1, these result in the same outcome (unless it's specified to do something else with the robot after moving the block). Remember, a predicted goal is correct if it would lead to the same outcome as the set of ground truths, even if the wording is different; a goal is different if it would lead to a different outcome, even if the wording is similar. Go through the the ground truth statements one by one, and check if the prediction matches them one by one. if it matches at least one of them, the prediction is correct. If you cannot determine whether the predicted goal is correct or incorrect without seeing the pictures of the environment, say "Unknown". The possible levels of simlarity are:
 """
 SIMILARITY_LEVELS = {
@@ -350,12 +359,61 @@ SIMILARITY_LEVELS = {
         " without seeing the frames."
     ),
     }
-
 class SummarizeGoalsTemplate(PromptTemplate):
     
     def __init__(self, resolution):
         super().__init__(resolution)
         self.prompt = SUMMARIZE_GOALS_PROMPT
+        
+    
+    def __call__(self, imgs, subgoals):
+        assert len(imgs) == 2, "Must provide two images"
+        before_img, after_img = imgs
+        return [
+            {
+                "type": "text",
+                "text": self.prompt,
+            },
+            {
+                "type": "text",
+                "text": subgoals,
+            },
+
+            {
+                "type": "text",
+                "text": f"Frame 1:",
+            },
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:image/jpeg;base64,{before_img}",
+                    "detail": self.resolution,
+                },
+            },
+            {
+                "type": "text",
+                "text": f"Frame 2:",
+            },
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:image/jpeg;base64,{after_img}",
+                    "detail": self.resolution,
+                },
+            },
+        ]
+
+    def parse_output(self, text):
+        # Find any lines that start with "GOAL:"
+        goal_line = text.split("FINAL:")[-1].replace("\n", "")
+        # Remove the "GOAL:" prefix
+        return {'final': goal_line}
+class PickMajorityTemplate(PromptTemplate):
+    
+    
+    def __init__(self, resolution):
+        super().__init__(resolution)
+        self.prompt = PICK_MAJORiTY_PROMPT
         
     
     def __call__(self, imgs, subgoals):
@@ -453,7 +511,9 @@ class EvalGoalsTemplate(PromptTemplate):
 PROMPT_TEMPLATES = {
     "two_frame_short_goal_spec_label": TwoFrameShortGoalSpecLabelTemplate,    
     "summarize_goals": SummarizeGoalsTemplate,
+    "pick_majority": PickMajorityTemplate,
     "eval_goals": EvalGoalsTemplate,
+
 }
   
 ############### GET GOAL FUNCTIONS #####################
@@ -556,7 +616,7 @@ class GetGoalPickedFromDiffTemps(GetGoal):
         summary_out_dict = generate_single_traj(imgs, 
             output_path,
             cache,
-            'summarize_goals',
+            'pick_majority',
             temperature=0.5,
             resolution=resolution,
             max_tokens=max_tokens, 
@@ -590,9 +650,9 @@ if __name__ == "__main__":
                       '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs',
                       '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs',
                       ]
-    output_folder = '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/quick_eval'
+    output_folder = '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/pick_majority'
     # GOAL_FN = GetGoalFromSinglePrompt()
-    # GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/magical/frame_pairs/alex_test','prompt_template': 'two_frame_short_goal_spec_label', 'temperature': 0, 'resolution': 'high', 'max_tokens': 1000}
+    # GOAL_FN_KWARGS = {'output_folder': output_folder,'prompt_template': 'two_frame_short_goal_spec_label', 'temperature': 0.7, 'resolution': 'high', 'max_tokens': 1000}
     GOAL_FN = GetGoalPickedFromDiffTemps()
     GOAL_FN_KWARGS = {'output_folder': output_folder,'prompt_template': 'two_frame_short_goal_spec_label', 'temperatures': [0,0.2,0.5,0.7], 'resolution': 'high', 'max_tokens': 1000}
     main(images_folders, GOAL_FN, GOAL_FN_KWARGS, output_folder)

@@ -1,0 +1,40 @@
+{
+    "args": {
+        "prompt_template": "eval_goals",
+        "temperature": 0,
+        "max_tokens": 1000,
+        "resolution": "high",
+        "prompt_kwargs": {
+            "ground_truths": [
+                "Grab the blue square block B1.",
+                "Move to bottom and pick up block B1",
+                "Move forward to grasp B1",
+                "Move to block B1 and pick it up."
+            ],
+            "predicted_goal": {
+                "subgoals": [
+                    " Pick up B1."
+                ]
+            }
+        },
+        "imgs": "None"
+    },
+    "messages": [
+        {
+            "type": "text",
+            "text": "You are a helpful assistant. Your job is to measure the similarity a predicted goal and a set of ground truth observations for a reinforcement learning benchmark environment, where the aim is to manipulate blocks by having a robot push them around in various ways. The set of ground truths are all correct, but were described by different people. You can assume that they all lead to the same outcome, so if the predicted goal describes the same as at least one of them, it's correct. Note that the shapes, colors, and locations of blocks are significant. e.g. \"Move the blue block\" is different from \"Move the red block\". The blocks are labeled starting with B. There are also goal regions with labels containing SA of different colors, and their colors are significant too. Sometimes the goals are formulated in the first person, e.g. \"move upwards\" or in the third person e.g. \"move R upwards\". Here R refers to the label of robot you control, therefore these two would be equivalent. It does not matter if the prediction does not mention color or shape as long as the label is correct. In general absolute directions need to be specific: move to the top left and move to the top are not giving the same outcome. Picking up an object and grabbing an object is the same action. In general if an agent is approaching a block, you can assume its intention is to pick up the block. The robot is moving the blocks, so if a goal says move B1 to SA1, and another says move R and B1 to SA1, these result in the same outcome (unless it's specified to do something else with the robot after moving the block). Remember, a predicted goal is correct if it would lead to the same outcome as the set of ground truths, even if the wording is different; a goal is different if it would lead to a different outcome, even if the wording is similar. Go through the the ground truth statements one by one, and check if the prediction matches them one by one. if it matches at least one of them, the prediction is correct. If you cannot determine whether the predicted goal is correct or incorrect without seeing the pictures of the environment, say \"Unknown\". The possible levels of simlarity are:\n"
+        },
+        {
+            "type": "text",
+            "text": "{'Incorrect': 'An agent that tries to achieve the predicted goal will fail in achieving the real goal because there is a meaningful difference between the two goals.', 'Correct': 'An agent that tries to achieve the predicted goal will succeed in achieving the real goal, even if there are slight differences in phrasing that does not affect the meaning of the goal.', 'Unknown': 'There is not enough information to determine whether the predicted goal is correct or incorrect  without seeing the frames.'}"
+        },
+        {
+            "type": "text",
+            "text": "        \n        Here is the ground truth goals:\n\n        --- BEGIN GROUND TRUTH GOAL ---\n        Grab the blue square block B1.\nMove to bottom and pick up block B1\nMove forward to grasp B1\nMove to block B1 and pick it up.\n        --- END GROUND TRUTH GOAL ---\n\n        Here is the predicted goal:\n\n        --- BEGIN PREDICTED GOAL ---\n        {'subgoals': [' Pick up B1.']}\n        --- END PREDICTED GOAL ---\n\n        How similar are these goals? Take a deep breath and reason step by step. Be concise. After reasoning, select from one of the three answers (spelled in exactly this way: Incorrect, Correct, Unknown). Output your answer on a new line, in the form EVALUATION: <your answer here>.\n        "
+        }
+    ],
+    "llm_completion": "The predicted goal is to \"Pick up B1.\" All the ground truth goals involve moving towards and picking up block B1, although they specify different starting actions (grab, move to bottom, move forward, move to block). However, the end result in all cases is picking up B1, which matches the predicted goal.\n\nEVALUATION: Correct",
+    "parsed_goals": {
+        "eval": "Correct"
+    }
+}

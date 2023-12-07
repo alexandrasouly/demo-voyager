@@ -1,0 +1,80 @@
+{
+    "Task1": {
+        "10": {
+            "Correct": 2,
+            "Incorrect": 7,
+            "Unknown": 1,
+            "Failed": 0
+        },
+        "20": {
+            "Correct": 3,
+            "Incorrect": 7,
+            "Unknown": 0,
+            "Failed": 0
+        },
+        "40": {
+            "Correct": 4,
+            "Incorrect": 6,
+            "Unknown": 0,
+            "Failed": 0
+        },
+        "80": {
+            "Correct": 2,
+            "Incorrect": 8,
+            "Unknown": 0,
+            "Failed": 0
+        }
+    },
+    "Task2": {
+        "10": {
+            "Correct": 8,
+            "Incorrect": 2,
+            "Unknown": 0,
+            "Failed": 0
+        },
+        "20": {
+            "Correct": 5,
+            "Incorrect": 4,
+            "Unknown": 1,
+            "Failed": 0
+        },
+        "50": {
+            "Correct": 6,
+            "Incorrect": 4,
+            "Unknown": 0,
+            "Failed": 0
+        },
+        "100": {
+            "Correct": 6,
+            "Incorrect": 4,
+            "Unknown": 0,
+            "Failed": 0
+        }
+    },
+    "Task3": {
+        "10": {
+            "Correct": 3,
+            "Incorrect": 7,
+            "Unknown": 0,
+            "Failed": 0
+        },
+        "20": {
+            "Correct": 6,
+            "Incorrect": 3,
+            "Unknown": 1,
+            "Failed": 0
+        },
+        "60": {
+            "Correct": 7,
+            "Incorrect": 3,
+            "Unknown": 0,
+            "Failed": 0
+        },
+        "180": {
+            "Correct": 6,
+            "Incorrect": 4,
+            "Unknown": 0,
+            "Failed": 0
+        }
+    }
+}
