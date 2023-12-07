@@ -201,7 +201,7 @@ def quick_evaluate(final_answers, output_folder, final_out_file):
     print(f"Wrote {final_out_file}")
     return final_answers
 
-def count_evals(evald_answers):
+def count_evals(evald_answers, out_folder):
     counts = {}
     for img_pair_folder in evald_answers.keys():
         task = img_pair_folder.split('/')[-3]
@@ -209,9 +209,12 @@ def count_evals(evald_answers):
         if task not in counts:
             counts[task] = {}
         if frame_pair_dist not in counts[task]:
-            counts[task][frame_pair_dist] = {"Correct": 0, "Incorrect": 0, "Unknown": 0}
+            counts[task][frame_pair_dist] = {"Correct": 0, "Incorrect": 0, "Unknown": 0, "Failed": 0}
         sim = evald_answers[img_pair_folder]['similarity']
         counts[task][frame_pair_dist][sim] += 1
+    file = os.path.join(out_folder, 'counts.json')
+    with open(file, "w") as f:
+        json.dump(counts, f, indent=4)
     return counts
 
 def plot_evals(counts, out_folder):
@@ -238,7 +241,7 @@ def plot_evals(counts, out_folder):
         ax.set_ylabel("# of pairs")
         # Adding a title
         ax.set_title(task)
-        out_file = os.path.join(out_folder, f'{task}.png')
+        out_file = os.path.join(out_folder, f'bars_{task}.png')
         plt.savefig(out_file, bbox_inches='tight', dpi=300)
         print(f"Saved {out_file}")
 
@@ -569,7 +572,7 @@ def main(images_folders, GOAL_FN, GOAL_FN_KWARGS, out_folder):
     out_file = os.path.join(out_folder,'test.json')
     answers = final_answers(goals, ground_truths, out_file)
     evald_answers = quick_evaluate(answers, out_folder, out_file)
-    counts = count_evals(evald_answers)
+    counts = count_evals(evald_answers, out_folder)
     plot_evals(counts, out_folder)
     return evald_answers
 
@@ -589,7 +592,7 @@ if __name__ == "__main__":
                       ]
     output_folder = '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/quick_eval'
     # GOAL_FN = GetGoalFromSinglePrompt()
-    # GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/magical/frame_pairs/alex_test','prompt_template': 'two_frame_short_goal_spec_label', 'temperature': 0.5, 'resolution': 'high', 'max_tokens': 1000}
+    # GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/magical/frame_pairs/alex_test','prompt_template': 'two_frame_short_goal_spec_label', 'temperature': 0, 'resolution': 'high', 'max_tokens': 1000}
     GOAL_FN = GetGoalPickedFromDiffTemps()
     GOAL_FN_KWARGS = {'output_folder': output_folder,'prompt_template': 'two_frame_short_goal_spec_label', 'temperatures': [0,0.2,0.5,0.7], 'resolution': 'high', 'max_tokens': 1000}
     main(images_folders, GOAL_FN, GOAL_FN_KWARGS, output_folder)
