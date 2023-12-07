@@ -96,7 +96,7 @@ def generate_single_traj(
     )
 
     parsed_goals = prompt_template_obj.parse_output(llm_completion)
-
+    imgs = imgs if imgs else "None"
     out_dict = {
         "args": {
             "prompt_template": prompt_template,
@@ -187,96 +187,18 @@ def final_answers(goals, ground_truths, out_file):
     print(f"Wrote {out_file}")
     return final_answers
 
-def evaluate(final_answers, out_file):
-    SimilarityLevel = Union[Literal["Incorrect"], Literal["Correct"], Literal["Unknown"]]
-    similarity_levels = {
-    "Incorrect": (
-        "An agent that tries to achieve the predicted "
-        "goal will fail in achieving the real goal "
-        "because there is a meaningful difference "
-        "between the two goals."
-    ),
-    "Correct": (
-        "An agent that tries to achieve the predicted "
-        "goal will succeed in achieving the real goal, "
-        "even if there are slight differences in phrasing "
-        "that does not affect the meaning of the goal."
-    ),
-    "Unknown": (
-        "There is not enough information to determine "
-        "whether the predicted goal is correct or incorrect "
-        " without seeing the frames."
-    ),
-    }
-    def get_goal_similarity_chat(chat_llm: models.Model, ground_truths: List[str], predicted_goal: str, out_file) -> SimilarityLevel: # type: ignore
-        
-        cache = load_cache()
-        # check if in cache
-        serialized_args = json.dumps({'truths': truths, 'pred': pred, 'prompt': AUTOEVAL_PROMPT_GOAL})
-        if serialized_args in cache:
-            print("Using cached result")
-            res = cache[serialized_args]
-        else:
-        
-            sim_levels = "\n".join(
-                f"({num}) {level}: {desc}:" for num, (level, desc) in enumerate(similarity_levels.items(), start=1)
-            )
-            str_ground_truths ="\n".join(ground_truths)
-            with system():
-                res = chat_llm + AUTOEVAL_PROMPT_GOAL + f"""
-
-        The {len(similarity_levels)} possible levels of simlarity are:
-
-        {sim_levels}
-
-        Here is the ground truth goals:
-
-        --- BEGIN GROUND TRUTH GOAL ---
-        {str_ground_truths}
-        --- END GROUND TRUTH GOAL ---
-
-        Here is the predicted goal:
-
-        --- BEGIN PREDICTED GOAL ---
-        {predicted_goal}
-        --- END PREDICTED GOAL ---
-
-        How similar are these goals? Take a deep breath and reason step by step. Reason without answering first. Be concise."""
-
-            # do think step-by-step step
-            with assistant():
-                res = res + gen(name = "cot")
-
-            with user():
-                res = res + f"""Now, what is the final answer? Select from one of the three answers (spelled in exactly this way: {', '.join(similarity_levels)}). Say only one of the options and nothing else."""
-
-            # final answer
-            with assistant():
-                res = res + select(similarity_levels.keys(), name="sim_level")
-            
-            # save to cache
-            cache[serialized_args] = {"cot": res.get("cot"), "sim_level": res.get("sim_level")}
-            save_cache(cache)
-        # save the output
-        with open(out_file, "w") as f:
-            json.dump({'truths': truths,'pred':predicted_goal,"cot": res.get("cot"), "sim_level": res.get("sim_level")}, f, indent=4)
-        return res.get("sim_level")
-
+def quick_evaluate(final_answers, output_folder, final_out_file):
     for img_pair_folder in final_answers.keys():
         file_name = f"{img_pair_folder.split('/')[-3]}_{img_pair_folder.split('/')[-2]}__{img_pair_folder.split('/')[-1]}_eval.json"
-        eval_out_file = os.path.join(os.path.dirname(out_file), file_name)
+        eval_out_file = os.path.join(output_folder, file_name)
         truths = final_answers[img_pair_folder]['ground_truths']
         pred = final_answers[img_pair_folder]['prediction']
-
-        sim=get_goal_similarity_chat(
-        models.OpenAIChat("gpt-4-1106-preview", temperature=0),
-        truths,
-        pred, 
-        eval_out_file)
-        final_answers[img_pair_folder]['similarity'] = sim
-    with open(out_file, "w") as f:
+        prompt_kwargs = {"ground_truths":truths, "predicted_goal": pred}
+        sim = EvalPredictions()(img_pair_folder, output_folder, prompt_template='eval_goals', **prompt_kwargs)
+        final_answers[img_pair_folder]['similarity'] = sim['eval']
+    with open(final_out_file, "w") as f:
         json.dump(final_answers, f, indent=4)
-    print(f"Wrote {out_file}")
+    print(f"Wrote {final_out_file}")
     return final_answers
 
 def count_evals(evald_answers):
@@ -292,8 +214,7 @@ def count_evals(evald_answers):
         counts[task][frame_pair_dist][sim] += 1
     return counts
 
-def plot_evals(counts, out_file):
-    out_folder = os.path.dirname(out_file)
+def plot_evals(counts, out_folder):
     for task in counts.keys():
         labels = counts[task].keys()
         correct = [counts[task][label]['Correct'] for label in labels]
@@ -329,7 +250,7 @@ def plot_evals(counts, out_file):
 # Constructs the prompt to send to the VLM, and parse the goal from the answer
 
 class PromptTemplate:
-    def __init__(self, resolution):
+    def __init__(self, resolution="high"):
         self.resolution = resolution
 
     def __call__(self, imgs):
@@ -405,7 +326,28 @@ We provide you with a list of possible subgoals, and your job is to identify whi
 
 The possible subgoals are:
 """
-AUTOEVAL_PROMPT_GOAL= f"""You are a helpful assistant. Your job is to measure the similarity a predicted goal and a set of ground truth observations for a reinforcement learning benchmark environment, where the aim is to manipulate blocks by having a robot push them around in various ways. The set of ground truths are all correct, but were described by different people. You can assume that they all lead to the same outcome, so if the predicted goal describes the same as at least one of them, it's correct. Note that the shapes, colors, and locations of blocks are significant. e.g. "Move the blue block" is different from "Move the red block". The blocks are labeled starting with B. There are also goal regions with labels containing SA of different colors, and their colors are significant too. Sometimes the goals are formulated in the first person, e.g. "move upwards" or in the third person e.g. "move R upwards". Here R refers to the label of robot you control, therefore these two would be equivalent. It does not matter if the prediction does not mention color or shape as long as the label is correct. In general absolute directions need to be specific: move to the top left and move to the top are not giving the same outcome. Picking up an object and grabbing an object is the same action. In general if an agent is approaching a block, you can assume its intention is to pick up the block. The robot is moving the blocks, so if a goal says move B1 to SA1, and another says move R and B1 to SA1, these result in the same outcome (unless it's specified to do something else with the robot after moving the block). Remember, a predicted goal is correct if it would lead to the same outcome as the set of ground truths, even if the wording is different; a goal is different if it would lead to a different outcome, even if the wording is similar. Go through the the ground truth statements one by one, and check if the prediction matches them one by one. if it matches at least one of them, the prediction is correct. If you cannot determine whether the predicted goal is correct or incorrect without seeing the pictures of the environment, say "unknown". """
+EVAL_GOALS_PROMPT= f"""You are a helpful assistant. Your job is to measure the similarity a predicted goal and a set of ground truth observations for a reinforcement learning benchmark environment, where the aim is to manipulate blocks by having a robot push them around in various ways. The set of ground truths are all correct, but were described by different people. You can assume that they all lead to the same outcome, so if the predicted goal describes the same as at least one of them, it's correct. Note that the shapes, colors, and locations of blocks are significant. e.g. "Move the blue block" is different from "Move the red block". The blocks are labeled starting with B. There are also goal regions with labels containing SA of different colors, and their colors are significant too. Sometimes the goals are formulated in the first person, e.g. "move upwards" or in the third person e.g. "move R upwards". Here R refers to the label of robot you control, therefore these two would be equivalent. It does not matter if the prediction does not mention color or shape as long as the label is correct. In general absolute directions need to be specific: move to the top left and move to the top are not giving the same outcome. Picking up an object and grabbing an object is the same action. In general if an agent is approaching a block, you can assume its intention is to pick up the block. The robot is moving the blocks, so if a goal says move B1 to SA1, and another says move R and B1 to SA1, these result in the same outcome (unless it's specified to do something else with the robot after moving the block). Remember, a predicted goal is correct if it would lead to the same outcome as the set of ground truths, even if the wording is different; a goal is different if it would lead to a different outcome, even if the wording is similar. Go through the the ground truth statements one by one, and check if the prediction matches them one by one. if it matches at least one of them, the prediction is correct. If you cannot determine whether the predicted goal is correct or incorrect without seeing the pictures of the environment, say "Unknown". The possible levels of simlarity are:
+"""
+SIMILARITY_LEVELS = {
+    "Incorrect": (
+        "An agent that tries to achieve the predicted "
+        "goal will fail in achieving the real goal "
+        "because there is a meaningful difference "
+        "between the two goals."
+    ),
+    "Correct": (
+        "An agent that tries to achieve the predicted "
+        "goal will succeed in achieving the real goal, "
+        "even if there are slight differences in phrasing "
+        "that does not affect the meaning of the goal."
+    ),
+    "Unknown": (
+        "There is not enough information to determine "
+        "whether the predicted goal is correct or incorrect "
+        " without seeing the frames."
+    ),
+    }
+
 class SummarizeGoalsTemplate(PromptTemplate):
     
     def __init__(self, resolution):
@@ -456,11 +398,59 @@ class SummarizeGoalsTemplate(PromptTemplate):
         # Remove the "GOAL:" prefix
         return {'final': goal_line}
 
+class EvalGoalsTemplate(PromptTemplate):
+    def __init__(self, resolution= None):
+        self.prompt = EVAL_GOALS_PROMPT
+        self.similarity_levels = SIMILARITY_LEVELS
+        
+    def __call__(self, imgs, ground_truths, predicted_goal):
+        assert len(imgs) == 0, "Must provide no images"
+        str_ground_truths = "\n".join(ground_truths)
+        eval_text = f"""        
+        Here is the ground truth goals:
 
+        --- BEGIN GROUND TRUTH GOAL ---
+        {str_ground_truths}
+        --- END GROUND TRUTH GOAL ---
+
+        Here is the predicted goal:
+
+        --- BEGIN PREDICTED GOAL ---
+        {predicted_goal}
+        --- END PREDICTED GOAL ---
+
+        How similar are these goals? Take a deep breath and reason step by step. Be concise. After reasoning, select from one of the three answers (spelled in exactly this way: {', '.join(self.similarity_levels.keys())}). Output your answer on a new line, in the form EVALUATION: <your answer here>.
+        """
+
+        message = [{
+                "type": "text",
+                "text": self.prompt,
+            },
+            {
+                "type": "text",
+                "text": str(self.similarity_levels),
+            },
+            {
+                "type": "text",
+                "text": eval_text,
+            },]
+        return message
+
+    def parse_output(self, text):
+        # Find any lines that start with "GOAL:"
+        goal_line = text.split("EVALUATION")[-1].replace("\n", "")
+        for k in self.similarity_levels.keys():
+            if k in goal_line:
+                goal = k
+                return {'eval': goal}
+        return {'eval': 'Failed'}
+            
+        
 # add new ones here 
 PROMPT_TEMPLATES = {
     "two_frame_short_goal_spec_label": TwoFrameShortGoalSpecLabelTemplate,    
     "summarize_goals": SummarizeGoalsTemplate,
+    "eval_goals": EvalGoalsTemplate,
 }
   
 ############### GET GOAL FUNCTIONS #####################
@@ -499,6 +489,30 @@ class GetGoalFromSinglePrompt(GetGoal):
             )
         goal = out_dict['parsed_goals']
         return goal
+class EvalPredictions(GetGoal):
+    def __init__(self,):
+        pass
+    def __call__(self, img_pair_folder, output_folder, prompt_template, temperature=0, max_tokens=1000, **prompt_kwargs):
+        cache = load_cache()
+        output_folder = pathlib.Path(output_folder)
+        output_folder.mkdir(parents=True, exist_ok=True)
+        now = datetime.datetime.now()
+        time_str = now.strftime("%FT%H:%M:%S")
+        file_name = f"{img_pair_folder.split('/')[-3]}_{img_pair_folder.split('/')[-2]}__{img_pair_folder.split('/')[-1]}__{time_str}_eval.json"
+        output_path = os.path.join(
+                output_folder, file_name
+            )
+        out_dict = generate_single_traj(
+                [],
+                output_path,
+                cache,
+                prompt_template,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                **prompt_kwargs,
+            )
+        eval_ans = out_dict['parsed_goals']
+        return eval_ans
 
 class GetGoalPickedFromDiffTemps(GetGoal):
     def __init__(self,):
@@ -549,14 +563,14 @@ class GetGoalPickedFromDiffTemps(GetGoal):
 
 
 
-def main(images_folders, GOAL_FN, GOAL_FN_KWARGS, out_file):
+def main(images_folders, GOAL_FN, GOAL_FN_KWARGS, out_folder):
     ground_truths = get_ground_truths(images_folders)
     goals = get_goals(images_folders, GOAL_FN, GOAL_FN_KWARGS)
+    out_file = os.path.join(out_folder,'test.json')
     answers = final_answers(goals, ground_truths, out_file)
-    evald_answers = evaluate(answers, out_file)
-    #evald_answers = json.load(open('/Users/alexandrasouly/code/chai/magical/frame_pairs/alex_test2/alex_test.json', "r"))
+    evald_answers = quick_evaluate(answers, out_folder, out_file)
     counts = count_evals(evald_answers)
-    plot_evals(counts, out_file)
+    plot_evals(counts, out_folder)
     return evald_answers
 
 if __name__ == "__main__":
@@ -573,12 +587,12 @@ if __name__ == "__main__":
                       '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/60-frame-pairs',
                       '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/Task3/180-frame-pairs',
                       ]
+    output_folder = '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/quick_eval'
     # GOAL_FN = GetGoalFromSinglePrompt()
     # GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/magical/frame_pairs/alex_test','prompt_template': 'two_frame_short_goal_spec_label', 'temperature': 0.5, 'resolution': 'high', 'max_tokens': 1000}
     GOAL_FN = GetGoalPickedFromDiffTemps()
-    GOAL_FN_KWARGS = {'output_folder': '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/fix_eval','prompt_template': 'two_frame_short_goal_spec_label', 'temperatures': [0,0.2,0.5,0.7], 'resolution': 'high', 'max_tokens': 1000}
-    out_file = '/Users/alexandrasouly/code/chai/demo-voyager/frame_pairs/fix_eval/test.json'
-    main(images_folders, GOAL_FN, GOAL_FN_KWARGS, out_file)
+    GOAL_FN_KWARGS = {'output_folder': output_folder,'prompt_template': 'two_frame_short_goal_spec_label', 'temperatures': [0,0.2,0.5,0.7], 'resolution': 'high', 'max_tokens': 1000}
+    main(images_folders, GOAL_FN, GOAL_FN_KWARGS, output_folder)
 
 
 # HOW TO USE:
